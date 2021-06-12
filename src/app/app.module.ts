@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PrimengModule } from './primeng/primeng.module';
+import { FinancesModule } from './finances/finances.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { PrimengModule } from './primeng/primeng.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PrimengModule
+    FinancesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
