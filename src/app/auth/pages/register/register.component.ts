@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,15 +10,46 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
 
   public formSubmitted: boolean = false;
-  public emailMessage: string = "Email is required";
-  public nameMessage: string = "Name is required";
-  public passwordMessage: string = "Password is required";
+
+  get nameMessage(): string {
+    const errors = this.registerForm.get('name')?.errors; 
+    if (errors?.minlength || errors?.maxlength) {
+      return "Name must contain between 4 and 16 characters";
+    }
+    return "Name is required";
+  }
+
+  get emailMessage(): string {
+    const errors = this.registerForm.get('email')?.errors; 
+    if (errors?.email) {
+      return "Invalid email";
+    }
+    return "Email is required";
+  }
+
+  get passwordMessage(): string {
+    const errors = this.registerForm.get('password')?.errors; 
+    if (errors?.minlength) {
+      return "Invalid password";
+    }
+    return "Password is required";
+  }
+
+  get passwordConfirmMessage(): string {
+    const errors = this.registerForm.get('passwordConfirm')?.errors; 
+    if (errors?.noIguales) {
+      return "Passwords must be equals";
+    }
+    return "Password is required";
+  }
 
   public registerForm: FormGroup = this.fb.group({
-    name: [, [Validators.required]],
+    name: [, [Validators.required , Validators.minLength(4), Validators.maxLength(16)]],
     email: [, [Validators.required, Validators.email]],
     password: [, [Validators.required, Validators.minLength(8)]],
     passwordConfirm: [, [Validators.required, Validators.minLength(8)]]
+  }, {
+    validators: [ this.camposIguales('password', 'passwordConfirm') ]
   })
 
   constructor(private fb: FormBuilder,
@@ -36,6 +67,19 @@ export class RegisterComponent implements OnInit {
 
   errorMessage(campo: string): boolean {    
     return this.registerForm.get(campo)!.invalid && this.registerForm.get(campo)!.touched;
+  }
+
+  camposIguales(campo1: string, campo2: string) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const pass1 = control.get(campo1)?.value;
+      const pass2 = control.get(campo2)?.value;
+      if (pass1 !== pass2) {
+        control.get(campo2)?.setErrors({ noIguales: true   })
+        return { noIguales: true };
+      }
+      control.get(campo2)?.setErrors(null);
+      return null;
+    }
   }
 
 }

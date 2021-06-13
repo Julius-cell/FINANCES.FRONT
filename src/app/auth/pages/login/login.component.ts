@@ -13,8 +13,21 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  public emailMessage: string = "Email is required";
-  public passwordMessage: string = "Password is required";
+  get emailMessage(): string {
+    const errors = this.loginForm.get('email')?.errors; 
+    if (errors?.email) {
+      return "Invalid email";
+    }
+    return "Email is required";
+  }
+
+  get passwordMessage(): string {
+    const errors = this.loginForm.get('password')?.errors; 
+    if (errors?.minlength) {
+      return "Invalid password";
+    }
+    return "Password is required";
+  }
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
