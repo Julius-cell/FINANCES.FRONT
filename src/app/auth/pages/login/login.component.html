@@ -16,7 +16,8 @@
              formControlName="email" 
              placeholder="Ingrese su email">
       <span class="focus-input"></span>
-  </div>
+    </div>
+    <div finErrMsge [message]="emailMessage" [valide]="!errorMessage('email')"></div>
 
   <div class="wrap-input">
       <span class="label-input">Password</span>
@@ -25,7 +26,8 @@
              formControlName="password" 
              placeholder="Ingrese su contraseña">
       <span class="focus-input"></span>
-  </div>
+    </div>
+    <div finErrMsge [message]="passwordMessage" [valide]="!errorMessage('password')"></div>
   
   <div class="text-right"></div>
   

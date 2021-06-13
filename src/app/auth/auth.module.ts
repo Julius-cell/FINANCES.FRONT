@@ -7,6 +7,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { PrimengModule } from '../primeng/primeng.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrMsgeDirective } from './err-msge.directive';
 
 
 
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     LoginComponent,
     MainComponent,
-    RegisterComponent
+    RegisterComponent,
+    ErrMsgeDirective
   ],
   imports: [
     CommonModule,
