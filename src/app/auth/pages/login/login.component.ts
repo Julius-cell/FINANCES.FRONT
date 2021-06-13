@@ -13,6 +13,22 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  get emailMessage(): string {
+    const errors = this.loginForm.get('email')?.errors; 
+    if (errors?.email) {
+      return "Invalid email";
+    }
+    return "Email is required";
+  }
+
+  get passwordMessage(): string {
+    const errors = this.loginForm.get('password')?.errors; 
+    if (errors?.minlength) {
+      return "Invalid password";
+    }
+    return "Password is required";
+  }
+
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]]
@@ -31,5 +47,8 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
+  errorMessage(campo: string): boolean {    
+    return this.loginForm.get(campo)!.invalid && this.loginForm.get(campo)!.touched;
+  }
 
 }

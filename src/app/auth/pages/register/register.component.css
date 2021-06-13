@@ -25,7 +25,7 @@ a:focus {
 
 a:hover {
   text-decoration: none;
-  color: var(--blue-500);
+  color: var(--yellow-900);
 }
 
 /*---------------------------------------------*/
@@ -76,6 +76,16 @@ button:hover {
   font-size: 25px;
   color: #333333;
   line-height: 1;
+}
+
+.err-text {
+  width: 100%;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
 }
 
 /*---------------------------------------------*/
@@ -169,7 +179,7 @@ button:hover {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--blue-500);
+  background: var(--yellow-900);
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -205,7 +215,7 @@ button:hover {
   z-index: -1;
   width: 300%;
   height: 100%;
-  background-color: var(--blue-500);
+  background-color: var(--yellow-900);
   top: 0;
   left: -100%;
   -webkit-transition: all 0.4s;
