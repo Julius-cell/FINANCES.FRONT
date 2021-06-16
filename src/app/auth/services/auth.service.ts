@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { RegisterForm } from '../models/user';
+import { LoginForm, RegisterForm } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,22 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(user: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/api/user/login`, user)
+  login(formData: LoginForm): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/auth/login`, formData)
+      .pipe(
+        tap((resp) => {
+          localStorage.setItem('token', resp.token)
+        })
+      );
   }
 
-  register(formData: RegisterForm ): Observable<any> {
-    console.log('registering user');
-    return this.http.post<any>(`${this.baseUrl}/auth/signin`, formData);
+  register(formData: RegisterForm): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/user`, formData)
+      .pipe(
+        tap((resp) => {
+          localStorage.setItem('token', resp.token)
+        })
+      );
   }
 
 }

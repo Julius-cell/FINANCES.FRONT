@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.loginForm.value);
     // TODO: Call the service passing as a parameter the value's form
+    this.authService.login(this.loginForm.value).subscribe(resp => {
+      console.log(resp);
+    });
     // TODO: Show a message depending the result
     this.loginForm.reset();
   }
