@@ -4,3 +4,8 @@ export interface RegisterForm {
   password: string;
   passwordConfirm: string;
 }
+
+export interface LoginForm {
+  email: string;
+  password: string;
+}
