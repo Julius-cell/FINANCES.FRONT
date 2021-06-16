@@ -60,9 +60,15 @@ export class RegisterComponent implements OnInit {
   register() {
     console.log(this.registerForm.value);
     this.formSubmitted = true;
-    // TODO: Call the service passing as a parameter the value's form
-    // TODO: Show a message depending the result
-    this.registerForm.reset();
+    if (this.registerForm.valid) {
+      // TODO: Call the service passing as a parameter the value's form
+      this.authService.register(this.registerForm.value).subscribe(resp => {
+        console.log('User created');
+        console.log(resp);
+      }, (err) => console.warn(err));
+      // TODO: Show a message depending the result
+      this.registerForm.reset();
+    }
   }
 
   errorMessage(campo: string): boolean {    
