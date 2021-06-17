@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 
+declare const gapi: any;
+
 @Component({
   selector: 'fin-login',
   templateUrl: './login.component.html',
@@ -38,7 +40,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.renderButton();
+  }
 
   login() {
     console.log(this.loginForm.value);
@@ -52,6 +56,23 @@ export class LoginComponent implements OnInit {
 
   errorMessage(campo: string): boolean {    
     return this.loginForm.get(campo)!.invalid && this.loginForm.get(campo)!.touched;
+  }
+
+  onSuccess(googleUser: any) {
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log(id_token);
+  }
+  onFailure(error: any) {
+    console.log('Error: ', error.error);
+  }
+  renderButton() {
+    gapi.signin2.render('my-signin2', {
+      'scope': 'profile email',
+      'theme': 'dark',
+      'onsuccess': this.onSuccess,
+      'onfailure': this.onFailure
+    });
   }
 
 }
