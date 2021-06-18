@@ -15,6 +15,8 @@ declare const gapi: any;
 })
 export class LoginComponent implements OnInit {
 
+  public auth2: any;
+
   get emailMessage(): string {
     const errors = this.loginForm.get('email')?.errors; 
     if (errors?.email) {
@@ -37,8 +39,8 @@ export class LoginComponent implements OnInit {
   })
 
   constructor(private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService) { }
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.renderButton();
@@ -46,9 +48,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(this.loginForm.value);
-    // TODO: Call the service passing as a parameter the value's form
     this.authService.login(this.loginForm.value).subscribe(resp => {
       console.log(resp);
+      this.router.navigateByUrl('/finances/dashboard');
     });
     // TODO: Show a message depending the result
     this.loginForm.reset();
@@ -58,21 +60,36 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get(campo)!.invalid && this.loginForm.get(campo)!.touched;
   }
 
-  onSuccess(googleUser: any) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log(id_token);
-  }
-  onFailure(error: any) {
-    console.log('Error: ', error.error);
-  }
+
   renderButton() {
     gapi.signin2.render('my-signin2', {
       'scope': 'profile email',
       'theme': 'dark',
-      'onsuccess': this.onSuccess,
-      'onfailure': this.onFailure
     });
+
+    this.startApp();
+  }
+
+  startApp () {
+    gapi.load('auth2', () => {
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      this.auth2 = gapi.auth2.init({
+        client_id: '581195233399-c5am8u85bqul9o4jorkuhvudo0sbpu5m.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+      });
+      this.attachSignin(document.getElementById('my-signin2'));
+    });
+  };
+
+  attachSignin(element: any) {
+    this.auth2.attachClickHandler(element, {},
+        (googleUser: any) => {
+          const id_token = googleUser.getAuthResponse().id_token;
+          this.authService.loginGoogle(id_token)
+            .subscribe(res => this.router.navigateByUrl('/finances/dashboard'));
+        }, (error: any) => {
+          alert(JSON.stringify(error, undefined, 2));
+        });
   }
 
 }
