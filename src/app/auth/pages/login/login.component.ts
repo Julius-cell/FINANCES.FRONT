@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe(resp => {
-      console.log(resp);
       this.router.navigateByUrl('/finances/dashboard');
     });
     // TODO: Show a message depending the result

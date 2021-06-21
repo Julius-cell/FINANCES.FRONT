@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -53,7 +54,8 @@ export class RegisterComponent implements OnInit {
   })
 
   constructor(private fb: FormBuilder,
-    private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void { }
 
@@ -63,8 +65,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       // TODO: Call the service passing as a parameter the value's form
       this.authService.register(this.registerForm.value).subscribe(resp => {
-        console.log('User created');
-        console.log(resp);
+        this.router.navigateByUrl('/finances/dashboard');
       }, (err) => console.warn(err));
       // TODO: Show a message depending the result
       this.registerForm.reset();
