@@ -1,5 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -48,11 +49,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe(resp => {
       this.router.navigateByUrl('/finances/dashboard');
+    }, (err) => {
+      Swal.fire('Error', err.error.message, 'error');
     });
-    // TODO: Show a message depending the result
     this.loginForm.reset();
   }
 
@@ -66,7 +67,6 @@ export class LoginComponent implements OnInit {
       'scope': 'profile email',
       'theme': 'dark',
     });
-
     this.startApp();
   }
 

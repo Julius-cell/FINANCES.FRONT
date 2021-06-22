@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'fin-register',
@@ -60,14 +61,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   register() {
-    console.log(this.registerForm.value);
     this.formSubmitted = true;
     if (this.registerForm.valid) {
-      // TODO: Call the service passing as a parameter the value's form
       this.authService.register(this.registerForm.value).subscribe(resp => {
         this.router.navigateByUrl('/finances/dashboard');
-      }, (err) => console.warn(err));
-      // TODO: Show a message depending the result
+      }, (err) => {
+        Swal.fire('Error', err.error.message, 'error');
+      });
       this.registerForm.reset();
     }
   }
