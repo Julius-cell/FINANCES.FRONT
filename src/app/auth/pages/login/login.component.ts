@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.loginForm.value).subscribe(resp => {
-      this.router.navigateByUrl('/finances/dashboard');
+      this.router.navigateByUrl('/finances/dashboard');      
     }, (err) => {
       Swal.fire('Error', err.error.message, 'error');
     });

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { LoginForm, RegisterForm } from '../models/user';
+import { LoginForm, RegisterForm, UserRes } from '../models/user';
 import { Router } from '@angular/router';
 
 declare const gapi: any;
@@ -52,8 +52,8 @@ export class AuthService {
     )
   }
 
-  login(formData: LoginForm): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/login`, formData)
+  login(formData: LoginForm): Observable<UserRes> {
+    return this.http.post<UserRes>(`${this.baseUrl}/auth/login`, formData)
       .pipe(
         tap((res) => {
           localStorage.setItem('token', res.token)
@@ -61,8 +61,8 @@ export class AuthService {
       );
   }
 
-  loginGoogle(token: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/login/google`, { token })
+  loginGoogle(token: string): Observable<UserRes> {
+    return this.http.post<UserRes>(`${this.baseUrl}/auth/login/google`, { token })
       .pipe(
         tap((res) => {
           localStorage.setItem('token', res.token)
