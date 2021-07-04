@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderComponent } from './header/header.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     PageNotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { PrimengModule } from '../primeng/primeng.module';
   ],
   exports: [
     PageNotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
 })
 export class SharedModule { }
