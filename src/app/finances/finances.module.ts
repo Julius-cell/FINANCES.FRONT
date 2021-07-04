@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { FinancesRoutingModule } from './finances-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,7 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     CommonModule,
     PrimengModule,
-    FinancesRoutingModule
+    FinancesRoutingModule,
+    SharedModule
   ],
   exports: [
     HomeComponent
