@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthGuard } from '../auth/guard/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { ExpensesComponent } from './expenses/expenses.component';
 import { HomeComponent } from './home/home.component';
+import { PayrollComponent } from './payroll/payroll.component';
+import { StatsComponent } from './stats/stats.component';
 
 const routes: Routes = [
   {
@@ -10,8 +14,10 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: '**', redirectTo: 'dashboard' }
+      { path: 'payroll', component: PayrollComponent },
+      { path: 'stats', component: StatsComponent },
+      { path: 'expenses', component: ExpensesComponent },
+      { path: '**', redirectTo: 'payroll' }
     ]
   }
 ];
