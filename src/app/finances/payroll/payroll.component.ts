@@ -8,10 +8,11 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class PayrollComponent implements OnInit {
 
+  public val: number = 0;
+
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   logout() {
     this.authService.logout();
