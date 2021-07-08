@@ -5,6 +5,7 @@ import { ToastModule } from 'primeng/toast';
 import { AvatarModule } from 'primeng/avatar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   exports: [
@@ -12,7 +13,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ToastModule,
     AvatarModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    ChartModule
   ]
 })
 export class PrimengModule { }
