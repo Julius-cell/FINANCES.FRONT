@@ -10,3 +10,7 @@
   border-top: 0.5px solid black;
   height: 100%;
 }
+
+.iconify {
+  cursor: pointer;
+}

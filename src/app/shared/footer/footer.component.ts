@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'fin-footer',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  goHome() {
+    console.log('holi');
+    
+    this.router.navigate(['finances/expenses']);
+  }
+  
+  goEdit() {
+    this.router.navigate(['finances/payroll']);
+  }
+  
+  goStats() {
+    this.router.navigate(['finances/stats']);
   }
 
 }
