@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { StatsComponent } from './stats/stats.component';
 import { PayrollComponent } from './payroll/payroll.component';
+import { ItemComponent } from './item/item.component';
 
 
 
@@ -17,7 +18,8 @@ import { PayrollComponent } from './payroll/payroll.component';
     HomeComponent,
     ExpensesComponent,
     StatsComponent,
-    PayrollComponent
+    PayrollComponent,
+    ItemComponent,
   ],
   imports: [
     CommonModule,

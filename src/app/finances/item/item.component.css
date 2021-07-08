@@ -1,0 +1,19 @@
+
+.item {
+  border: 0.5px solid #757575;
+  border-radius: 10px;
+  margin: 5px 0;
+  height: 45px;
+}
+
+.item p {
+  width: 100%;
+  border-bottom: 0.5px solid black;
+}
+
+:host ::ng-deep .p-inputtext {
+  width: 100%;
+  border: none;
+  border-bottom: 0.5px solid black;
+  padding: 0;
+}
