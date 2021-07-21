@@ -9,15 +9,15 @@
 
   <div class="items">
 
-    <!-- <ng-template #item></ng-template> -->
+    <ng-template #item></ng-template>
 
     <div class="wrap-button p-d-flex p-jc-center p-ai-center">
-      <button pButton pRipple type="button" label="+ Nuevo Ingreso" class="p-button-rounded"></button>
+      <button pButton pRipple type="button" label="+ Nuevo Ingreso" class="p-button-rounded" (click)="addItemComponent()"></button>
     </div>
   </div>
 
   <div class="wrap-button p-d-flex p-jc-center p-ai-end">
-    <button style="height: 36px;" pButton pRipple type="button" label="Siguiente" class="p-button-rounded"></button>
+    <button style="height: 36px;" pButton pRipple type="button" label="Siguiente" class="p-button-rounded" (click)="getData()"></button>
   </div>
 
 </div>
