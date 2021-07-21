@@ -1,27 +1,21 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { ItemComponent } from '../item/item.component';
 
 @Component({
-  selector: 'fin-incomes',
-  templateUrl: './incomes.component.html',
-  styleUrls: ['./incomes.component.css']
+  selector: 'fin-expenses',
+  templateUrl: './expenses.component.html',
+  styleUrls: ['./expenses.component.css']
 })
-export class IncomesComponent implements OnInit {
+export class ExpensesComponent implements OnInit {
 
   @ViewChild('item', {read: ViewContainerRef}) item;
 
-  constructor(private authService: AuthService,
-              private injector: Injector,
+  constructor(private injector: Injector,
               private cfr: ComponentFactoryResolver,
               private router: Router) { }
 
   ngOnInit(): void {}
-  
-  logout() {
-    this.authService.logout();
-  }
 
   addItemComponent() {
     const cmpFactory = this.cfr.resolveComponentFactory(ItemComponent);
@@ -39,13 +33,13 @@ export class IncomesComponent implements OnInit {
     });    
   }
 
-  goToExpenses() {
-    this.router.navigate(['finances/expenses']);
+  goToDashboard() {
+    this.router.navigate(['/finances/dashboard']);
   }
 
   submitPage() {
     this.getData();
-    this.goToExpenses();
+    this.goToDashboard();
   }
 
 }

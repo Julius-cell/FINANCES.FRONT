@@ -1,0 +1,34 @@
+.expenses {
+  padding: 0 20px;
+}
+
+.title {
+  margin-top: 10px;
+  height: 55px;
+  border-bottom: 0.5px solid black;
+}
+
+.sub-title {
+  height: 55px;
+  font-size: 0.9rem;
+}
+
+.items {
+  padding: 25px 15px;
+  height: 340px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.wrap-button {
+  height: 55px;
+}
+
+button {
+  height: 36px;
+  -webkit-box-shadow: 0px 3px 8px 1px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 3px 8px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 3px 8px 1px rgba(0, 0, 0, 0.4);
+}

@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatsComponent } from './stats/stats.component';
 import { IncomesComponent } from './incomes/incomes.component';
 import { ItemComponent } from './item/item.component';
+import { ExpensesComponent } from './expenses/expenses.component';
 
 
 
@@ -20,6 +21,7 @@ import { ItemComponent } from './item/item.component';
     StatsComponent,
     IncomesComponent,
     ItemComponent,
+    ExpensesComponent,
   ],
   imports: [
     CommonModule,
