@@ -3,11 +3,11 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { ItemComponent } from '../item/item.component';
 
 @Component({
-  selector: 'fin-payroll',
-  templateUrl: './payroll.component.html',
-  styleUrls: ['./payroll.component.css']
+  selector: 'fin-incomes',
+  templateUrl: './incomes.component.html',
+  styleUrls: ['./incomes.component.css']
 })
-export class PayrollComponent implements OnInit {
+export class IncomesComponent implements OnInit {
 
   @ViewChild('item', {read: ViewContainerRef}) item;
 

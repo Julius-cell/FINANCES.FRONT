@@ -6,9 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 import { FinancesRoutingModule } from './finances-routing.module';
 
 import { HomeComponent } from './home/home.component';
-import { ExpensesComponent } from './expenses/expenses.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatsComponent } from './stats/stats.component';
-import { PayrollComponent } from './payroll/payroll.component';
+import { IncomesComponent } from './incomes/incomes.component';
 import { ItemComponent } from './item/item.component';
 
 
@@ -16,9 +16,9 @@ import { ItemComponent } from './item/item.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    ExpensesComponent,
+    DashboardComponent,
     StatsComponent,
-    PayrollComponent,
+    IncomesComponent,
     ItemComponent,
   ],
   imports: [

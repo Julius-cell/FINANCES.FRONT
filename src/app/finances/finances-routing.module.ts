@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '../auth/guard/auth.guard';
 
-import { ExpensesComponent } from './expenses/expenses.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { PayrollComponent } from './payroll/payroll.component';
+import { IncomesComponent } from './incomes/incomes.component';
 import { StatsComponent } from './stats/stats.component';
 
 const routes: Routes = [
@@ -14,9 +14,9 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'payroll', component: PayrollComponent },
+      { path: 'incomes', component: IncomesComponent },
       { path: 'stats', component: StatsComponent },
-      { path: 'expenses', component: ExpensesComponent },
+      { path: 'dashboard', component: DashboardComponent },
       { path: '**', redirectTo: 'payroll' }
     ]
   }
