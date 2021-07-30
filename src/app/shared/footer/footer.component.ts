@@ -13,13 +13,11 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {}
 
   goHome() {
-    console.log('holi');
-    
-    this.router.navigate(['finances/expenses']);
+    this.router.navigate(['finances/dashboard']);
   }
   
   goEdit() {
-    this.router.navigate(['finances/payroll']);
+    this.router.navigate(['finances/incomes']);
   }
   
   goStats() {

@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'expenses', component: ExpensesComponent },
       { path: 'stats', component: StatsComponent },
       { path: 'dashboard', component: DashboardComponent },
-      { path: '**', redirectTo: 'payroll' }
+      { path: '**', redirectTo: 'dashboard' }
     ]
   }
 ];
