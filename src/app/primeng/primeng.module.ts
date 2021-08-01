@@ -6,6 +6,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ChartModule } from 'primeng/chart';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   exports: [
@@ -14,7 +15,8 @@ import { ChartModule } from 'primeng/chart';
     AvatarModule,
     InputTextModule,
     InputNumberModule,
-    ChartModule
+    ChartModule,
+    DialogModule
   ]
 })
 export class PrimengModule { }

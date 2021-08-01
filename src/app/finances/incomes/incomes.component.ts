@@ -1,7 +1,6 @@
-import { Component, ComponentFactoryResolver, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'fin-incomes',
@@ -10,9 +9,9 @@ import { ItemComponent } from '../item/item.component';
 })
 export class IncomesComponent implements OnInit {
 
+  public dialogIncome!: boolean;
+
   constructor(private authService: AuthService,
-              private injector: Injector,
-              private cfr: ComponentFactoryResolver,
               private router: Router) { }
 
   ngOnInit(): void {}
@@ -21,8 +20,8 @@ export class IncomesComponent implements OnInit {
     this.authService.logout();
   }
 
-  addIncome() {
-    
+  openDialogIncome() {
+    this.dialogIncome = true;
   }
 
   goToExpenses() {
@@ -31,6 +30,14 @@ export class IncomesComponent implements OnInit {
 
   submitPage() {
     this.goToExpenses();
+  }
+
+  saveIncomeInLocalStorage() {
+    this.closeDialogIncome();
+  }
+
+  closeDialogIncome() {
+    this.dialogIncome = false;
   }
 
 }

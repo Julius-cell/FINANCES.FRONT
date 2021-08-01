@@ -6,9 +6,9 @@
   <div class="sub-title p-d-flex p-jc-center p-ai-center">
     <p>Añade tus ingresos</p>
   </div>
-  
+
   <div class="items">
-    <button pButton pRipple type="button" label="+ Ingreso" class="p-button-outlined"></button>
+    <button (click)="openDialogIncome()" pButton pRipple type="button" label="+ Ingreso" class="p-button-outlined"></button>
   </div>
 
   <div class="wrap-button p-d-flex p-jc-center p-ai-end">
@@ -16,4 +16,19 @@
   </div>
 
 </div>
+
+<p-dialog [(visible)]="dialogIncome" header="Nuevo Ingreso" [modal]=true [style]="{width: '80vw'}">
+  <div class="name">
+    <label for="name">Nombre</label>
+    <input type="text" placeholder="Sueldo" pInputText id="name"/>
+  </div>
+  <div class="amount">
+    <label for="amount">Monto</label>
+    <p-inputNumber prefix="$ " placeholder="$ 0" id="amount"></p-inputNumber>
+  </div>
+  <div class="p-d-flex p-jc-center save">
+    <button pButton pRipple type="button" label="Guardar" class="p-button-rounded" (click)="saveIncomeInLocalStorage()"></button>
+  </div>
+</p-dialog>
+
 <!-- <a routerLink="/auth" (click)="logout()">Logout</a> -->
