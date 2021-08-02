@@ -1,19 +1,22 @@
 
 .item {
-  border: 0.5px solid #757575;
+  border: 0.5px solid var(--green-500);
   border-radius: 10px;
-  margin: 5px 0;
-  height: 45px;
+  height: 50px;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.item p {
-  width: 100%;
-  border-bottom: 0.5px solid black;
+.item div {
+  display: flex;
 }
 
-:host ::ng-deep .p-inputtext {
-  width: 100%;
-  border: none;
-  border-bottom: 0.5px solid black;
-  padding: 0;
+.iconify {
+  margin-right: 10px;
+}
+
+p {
+  font-size: 0.8rem;
 }
