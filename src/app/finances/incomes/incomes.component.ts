@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'fin-incomes',
@@ -11,11 +13,19 @@ export class IncomesComponent implements OnInit {
 
   public dialogIncome!: boolean;
 
-  constructor(private authService: AuthService,
-              private router: Router) { }
+  public incomeForm = this.fb.group({
+    name: [, [Validators.required]],
+    amount: [, [Validators.required]]
+  })
 
-  ngOnInit(): void {}
-  
+  constructor(private authService: AuthService,
+    private router: Router,
+    private storageService: LocalStorageService,
+    private fb: FormBuilder) { 
+  }
+
+  ngOnInit(): void { }
+
   logout() {
     this.authService.logout();
   }
@@ -33,7 +43,7 @@ export class IncomesComponent implements OnInit {
   }
 
   saveIncomeInLocalStorage() {
-    this.closeDialogIncome();
+    this.storageService.addIncome(this.incomeForm.value);
   }
 
   closeDialogIncome() {
