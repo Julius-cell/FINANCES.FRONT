@@ -11,6 +11,7 @@ import { StatsComponent } from './stats/stats.component';
 import { IncomesComponent } from './incomes/incomes.component';
 import { ItemComponent } from './item/item.component';
 import { ExpensesComponent } from './expenses/expenses.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -27,7 +28,8 @@ import { ExpensesComponent } from './expenses/expenses.component';
     CommonModule,
     PrimengModule,
     FinancesRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeComponent
