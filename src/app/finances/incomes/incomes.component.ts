@@ -12,6 +12,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 export class IncomesComponent implements OnInit {
 
   public dialogIncome!: boolean;
+  public incomes: any[] = [];
 
   public incomeForm = this.fb.group({
     name: [, [Validators.required]],
@@ -24,7 +25,9 @@ export class IncomesComponent implements OnInit {
     private fb: FormBuilder) { 
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.setIncome();
+  }
 
   logout() {
     this.authService.logout();
@@ -40,6 +43,16 @@ export class IncomesComponent implements OnInit {
 
   submitPage() {
     this.goToExpenses();
+  }
+
+  saveIncomeButton() {
+    this.saveIncomeInLocalStorage();
+    this.setIncome();
+    this.closeDialogIncome();
+  }
+
+  setIncome() {
+    this.incomes = this.storageService.getIncomes();
   }
 
   saveIncomeInLocalStorage() {

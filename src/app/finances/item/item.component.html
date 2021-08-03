@@ -1,10 +1,10 @@
 <div class="item">
   <div>
     <span class="iconify" data-inline="false" data-icon="emojione:money-bag" style="font-size: 15px;"></span>
-    <p>Sueldo</p>
+    <p>{{income.name}}</p>
   </div>
   <div>
     <span class="iconify" data-inline="false" data-icon="emojione:money-with-wings" style="font-size: 15px;"></span>
-    <p>$ 200.000</p>
+    <p>{{income.amount | currency:'CLP':'symbol-narrow'}}</p>
   </div>
 </div>

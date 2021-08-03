@@ -8,6 +8,7 @@
   </div>
 
   <div class="items">
+    <fin-item *ngFor="let income of incomes" [income]="income"></fin-item>
     <button (click)="openDialogIncome()" pButton pRipple type="button" label="+ Ingreso" class="p-button-outlined"></button>
   </div>
 
@@ -29,7 +30,7 @@
     </div>
     <div class="p-d-flex p-jc-center save">
       <button pButton pRipple type="button" label="Guardar" class="p-button-rounded"
-        (click)="saveIncomeInLocalStorage()"></button>
+        (click)="saveIncomeButton()"></button>
     </div>
   </form>
 </p-dialog>
