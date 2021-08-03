@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'fin-expenses',
@@ -18,16 +19,41 @@ export class ExpensesComponent implements OnInit {
   })
 
   constructor(private router: Router,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private storageService: LocalStorageService) { }
 
-  ngOnInit(): void {}
-
-  goToDashboard() {
-    this.router.navigate(['/finances/dashboard']);
+  ngOnInit(): void {
+    this.setExpense();
   }
 
+  openDialogExpense() {
+    this.dialogExpense = true;
+  }
+
+  saveExpenseButton() {
+    this.saveExpenseInLocalStorage();
+    this.setExpense();
+    this.closeDialogExpense();
+  }
+
+  saveExpenseInLocalStorage() {
+    this.storageService.addExpense(this.expenseForm.value);
+  }
+
+  setExpense() {
+    this.expenses = this.storageService.getExpenses();
+  }
+
+  closeDialogExpense() {
+    this.dialogExpense = false;
+  }
+  
   submitPage() {
     this.goToDashboard();
   }
 
+  goToDashboard() {
+    this.router.navigate(['/finances/dashboard']);
+  }
+  
 }

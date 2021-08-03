@@ -9,7 +9,7 @@
 
   <div class="items">
     <fin-item *ngFor="let expense of expenses" [data]="expense"></fin-item>
-    <button pButton pRipple type="button" label="+ Gasto" class="p-button-outlined"></button>
+    <button (click)="openDialogExpense()" pButton pRipple type="button" label="+ Gasto" class="p-button-outlined"></button>
   </div>
 
   <div class="wrap-button p-d-flex p-jc-center p-ai-end">
@@ -29,7 +29,7 @@
       <p-inputNumber formControlName="amount" prefix="$ " placeholder="$ 0" id="amount"></p-inputNumber>
     </div>
     <div class="p-d-flex p-jc-center save">
-      <button pButton pRipple type="button" label="Guardar" class="p-button-rounded"></button>
+      <button pButton pRipple type="button" label="Guardar" class="p-button-rounded" (click)="saveExpenseButton()"></button>
     </div>
   </form>
 </p-dialog>
