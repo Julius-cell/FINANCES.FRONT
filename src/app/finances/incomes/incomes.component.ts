@@ -22,27 +22,19 @@ export class IncomesComponent implements OnInit {
   constructor(private authService: AuthService,
     private router: Router,
     private storageService: LocalStorageService,
-    private fb: FormBuilder) { 
+    private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.setIncome();
   }
 
-  logout() {
-    this.authService.logout();
-  }
+  // logout() {
+  //   this.authService.logout();
+  // }
 
   openDialogIncome() {
     this.dialogIncome = true;
-  }
-
-  goToExpenses() {
-    this.router.navigate(['finances/expenses']);
-  }
-
-  submitPage() {
-    this.goToExpenses();
   }
 
   saveIncomeButton() {
@@ -51,16 +43,24 @@ export class IncomesComponent implements OnInit {
     this.closeDialogIncome();
   }
 
-  setIncome() {
-    this.incomes = this.storageService.getIncomes();
-  }
-
   saveIncomeInLocalStorage() {
     this.storageService.addIncome(this.incomeForm.value);
   }
 
+  setIncome() {
+    this.incomes = this.storageService.getIncomes();
+  }
+
   closeDialogIncome() {
     this.dialogIncome = false;
+  }
+
+  submitPage() {
+    this.goToExpenses();
+  }
+
+  goToExpenses() {
+    this.router.navigate(['finances/expenses']);
   }
 
 }
