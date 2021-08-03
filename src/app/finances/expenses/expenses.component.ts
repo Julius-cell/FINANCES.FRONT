@@ -1,6 +1,6 @@
-import { Component, ComponentFactoryResolver, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'fin-expenses',
@@ -9,36 +9,24 @@ import { ItemComponent } from '../item/item.component';
 })
 export class ExpensesComponent implements OnInit {
 
-  @ViewChild('item', {read: ViewContainerRef}) item;
+  public dialogExpense!: boolean;
+  public expenses: any[] = [];
 
-  constructor(private injector: Injector,
-              private cfr: ComponentFactoryResolver,
-              private router: Router) { }
+  public expenseForm = this.fb.group({
+    name: [, [Validators.required]],
+    amount: [, [Validators.required]]
+  })
+
+  constructor(private router: Router,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {}
-
-  addItemComponent() {
-    const cmpFactory = this.cfr.resolveComponentFactory(ItemComponent);
-    const componentRef = cmpFactory.create(this.injector);
-    this.item.insert(componentRef.hostView);
-  }
-
-  getData() {
-    let items: any[] = [];
-    const data = document.querySelectorAll('fin-item');
-    data.forEach(item => {
-      const key = item.children[0][0].value.toLowerCase();
-      const amount = parseInt((item.children[0][1].value).match(/\d+/g).join(''));
-      items.push({ [key]: amount });
-    });    
-  }
 
   goToDashboard() {
     this.router.navigate(['/finances/dashboard']);
   }
 
   submitPage() {
-    this.getData();
     this.goToDashboard();
   }
 

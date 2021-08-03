@@ -8,12 +8,8 @@
   </div>
 
   <div class="items">
-
-    <ng-template #item></ng-template>
-
-    <div class="wrap-button p-d-flex p-jc-center p-ai-center">
-      <button pButton pRipple type="button" label="+ Nuevo Gasto" class="p-button-rounded" (click)="addItemComponent()"></button>
-    </div>
+    <fin-item *ngFor="let expense of expenses" [data]="expense"></fin-item>
+    <button pButton pRipple type="button" label="+ Gasto" class="p-button-outlined"></button>
   </div>
 
   <div class="wrap-button p-d-flex p-jc-center p-ai-end">
@@ -21,3 +17,19 @@
   </div>
 
 </div>
+
+<p-dialog [(visible)]="dialogExpense" header="Nuevo Gasto" [modal]=true [style]="{width: '80vw'}">
+  <form [formGroup]="expenseForm">
+    <div class="name">
+      <label for="name">Nombre</label>
+      <input formControlName="name" type="text" placeholder="Comida" pInputText id="name" />
+    </div>
+    <div class="amount">
+      <label for="amount">Monto</label>
+      <p-inputNumber formControlName="amount" prefix="$ " placeholder="$ 0" id="amount"></p-inputNumber>
+    </div>
+    <div class="p-d-flex p-jc-center save">
+      <button pButton pRipple type="button" label="Guardar" class="p-button-rounded"></button>
+    </div>
+  </form>
+</p-dialog>
