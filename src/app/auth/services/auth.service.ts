@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, pluck, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginForm, RegisterForm, UserRes } from '../models/user';
 import { Router } from '@angular/router';
@@ -86,6 +86,13 @@ export class AuthService {
         this.router.navigateByUrl('/auth');
       })
     });
+  }
+
+  getUserInfo(): Observable<any> {
+    const token = localStorage.getItem('token') || '';
+    return this.http.get<any>(`${this.baseUrl}/auth/user`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }).pipe(pluck('data'));
   }
 
 }
