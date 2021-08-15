@@ -44,7 +44,9 @@ export class IncomesComponent implements OnInit {
   }
 
   saveIncomeInLocalStorage() {
-    this.storageService.addIncome(this.incomeForm.value);
+    const name = this.incomeForm.controls.name.value;
+    const amount = this.incomeForm.controls.amount.value; 
+    this.storageService.addIncome({[name]: amount});
   }
 
   setIncome() {

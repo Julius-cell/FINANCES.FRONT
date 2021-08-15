@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Payroll } from '../models/payroll';
+import { FinanceService } from '../services/finance.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
@@ -14,6 +16,8 @@ export class ExpensesComponent implements OnInit {
   public dialogExpense!: boolean;
   public expenses: any[] = [];
   public userId: string = '';
+  public payroll!: Payroll;
+  public userInfo: any;
 
   public expenseForm = this.fb.group({
     name: [, [Validators.required]],
@@ -23,7 +27,8 @@ export class ExpensesComponent implements OnInit {
   constructor(private router: Router,
     private fb: FormBuilder,
     private storageService: LocalStorageService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private financeService: FinanceService) { }
 
   ngOnInit(): void {
     this.setExpense();
@@ -41,7 +46,9 @@ export class ExpensesComponent implements OnInit {
   }
 
   saveExpenseInLocalStorage() {
-    this.storageService.addExpense(this.expenseForm.value);
+    const name = this.expenseForm.controls.name.value;
+    const amount = this.expenseForm.controls.amount.value;    
+    this.storageService.addExpense({[name]: amount});
   }
 
   setExpense() {
@@ -53,6 +60,7 @@ export class ExpensesComponent implements OnInit {
   }
   
   submitPage() {
+    this.setPayroll();
     this.savePayrollInDB();
     this.goToDashboard();
   }
@@ -62,13 +70,19 @@ export class ExpensesComponent implements OnInit {
   }
 
   savePayrollInDB() {
-    console.log(this.userId);
+    this.financeService.createPayroll(this.payroll, this.userId).subscribe(res => {
+      console.log(res);
+    });
   }
 
   getUserId() {
     this.authService.getUserInfo().subscribe(res => {
       this.userId = res._id;
     });
+  }
+
+  setPayroll() {
+    this.payroll = this.storageService.getPayroll();
   }
   
 }
