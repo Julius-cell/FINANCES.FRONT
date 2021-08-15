@@ -1,10 +1,10 @@
 <div class="item">
   <div>
     <span class="iconify" data-inline="false" data-icon="emojione:money-bag" style="font-size: 15px;"></span>
-    <p>{{data.name}}</p>
+    <p>{{ name | titlecase }}</p>
   </div>
   <div>
     <span class="iconify" data-inline="false" data-icon="emojione:money-with-wings" style="font-size: 15px;"></span>
-    <p>{{data.amount | currency:'CLP':'symbol-narrow'}}</p>
+    <p>{{ amount | currency:'CLP':'symbol-narrow' }}</p>
   </div>
 </div>
