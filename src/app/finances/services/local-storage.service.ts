@@ -39,10 +39,19 @@ export class LocalStorageService {
     const persist = currentExpenses.filter((el: any) => el.name !== expense.name);
     localStorage.setItem(this.expenses, JSON.stringify([...persist]));
   }
-
+  
   getExpenses() {
     const expenses = JSON.parse(localStorage.getItem(this.expenses)!);
     return expenses;
+  }
+  
+  getPayroll() {
+    const expenses = this.getExpenses();
+    const incomes = this.getIncomes();
+    return {
+      expenses,
+      incomes
+    }
   }
 
   private setLocalStorage() {
